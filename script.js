@@ -32,6 +32,7 @@ const arrayConductores = [
     }
 ]
 
+
 //EVENTOS
 
 formulario.addEventListener("submit", (ev) => {
@@ -48,15 +49,17 @@ const validarMatricula = () => {
 
     const matriculaEscrita = document.querySelector("#ingresoMatricula").value
     let errores = '';
-    let cocheEncontrado = arrayConductores.find(coche => coche.matricula === matriculaEscrita)
+    let encontrarCoche = arrayConductores.find(coche => coche.matricula === matriculaEscrita)
+    localStorage.setItem('encontrarCoche', JSON.stringify(encontrarCoche))
+    encontrarCoche = JSON.parse(localStorage.getItem("encontrarCoche"))
 
     if (matriculaEscrita === '') {
         errores = '<li>Escribe la matrícula</li>'
     } else if (regExp.test(matriculaEscrita) === false) {
         errores = '<li>Formato de matrícula no admitido</li>'
-    } else if (!cocheEncontrado) {
+    } else if (!encontrarCoche) {
         errores = '<li>No existe la matrícula</li>'
-    } else if (!Array.isArray(cocheEncontrado.multas) || cocheEncontrado.multas.length === 0) {
+    } else if (!Array.isArray(encontrarCoche.multas) || encontrarCoche.multas.length === 0) {
         errores = '<li>No hay multas para este coche</li>'
     }
 
@@ -64,7 +67,7 @@ const validarMatricula = () => {
         listaErrores.innerHTML = errores
     } else {
         listaErrores.innerHTML = '';
-        agregarATabla(cocheEncontrado.matricula, cocheEncontrado.modelo, cocheEncontrado.propietario, cocheEncontrado.multas.join(', '))
+        agregarATabla(encontrarCoche.matricula, encontrarCoche.modelo, encontrarCoche.propietario, encontrarCoche.multas.join(', '))
     }
 }
 
