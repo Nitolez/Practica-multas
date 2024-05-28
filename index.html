@@ -1,1 +1,30 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Práctica Multas</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<header>
+    <h1>Formulario interactivo</h1>
+</header>
+<body>
+    <form id="buscarMatricula" action="" method="get">
+            <label for="ingresoMatricula"></label>
+            <input type="text" id="ingresoMatricula" name="ingresoMatricula" placeholder= 'Ingresa tu matrícula'>
+            <input type="submit" placeholder="Buscar" id="buscar">
+    </form>
+    <div id="listaErrores">
 
+    </div>
+    <table id="tabla">
+        <tr id="fila">
+            <th id="thMatricula">Matrícula</th>
+            <th id="thModelo">Modelo</th>
+            <th id="thPropietario">Propietario</th>
+            <th id="thMultas">Multas</th>
+        </tr>
+    </table>
+    <script src="script.js"></script>
+</body>
+</html>
