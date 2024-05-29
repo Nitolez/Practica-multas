@@ -45,13 +45,14 @@ formulario.addEventListener("submit", (ev) => {
 
 //FUNCIONES
 
-const validarMatricula = () => {
+const validarMatricula = async () => {
 
     const matriculaEscrita = document.querySelector("#ingresoMatricula").value
     let errores = '';
     let encontrarCoche = arrayConductores.find(coche => coche.matricula === matriculaEscrita)
-    localStorage.setItem('encontrarCoche', JSON.stringify(encontrarCoche))
-    encontrarCoche = JSON.parse(localStorage.getItem("encontrarCoche"))
+    /*localStorage.setItem('encontrarCoche', JSON.stringify(encontrarCoche))
+    encontrarCoche = JSON.parse(localStorage.getItem("encontrarCoche"))*/
+
 
     if (matriculaEscrita === '') {
         errores = '<li>Escribe la matrícula</li>'
@@ -69,9 +70,10 @@ const validarMatricula = () => {
         listaErrores.innerHTML = '';
         agregarATabla(encontrarCoche.matricula, encontrarCoche.modelo, encontrarCoche.propietario, encontrarCoche.multas.join(', '))
     }
+
 }
 
-const agregarATabla = (matricula, modelo, propietario, multas) => {
+const agregarATabla = async (matricula, modelo, propietario, multas) => {
     const fila = document.createElement('tr')
 
     const celdaMatricula = document.createElement("td")
